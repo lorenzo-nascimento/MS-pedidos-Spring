@@ -1,10 +1,7 @@
 package br.com.fiap.ms_pedidos.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.annotation.Nullable;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -24,6 +21,12 @@ public class ItemDoPedido {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(nullable = false)
     private Integer quantidade;
+
     private String descricao;
+
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "pedido_id")
+    private Pedido pedido;
 }
